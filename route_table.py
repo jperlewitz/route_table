@@ -9,9 +9,9 @@ args = parser.parse_args()
 
 
 class Node:
-	def __init__(self):
-		self.right = None
-		self.left = None
+    def __init__(self):
+        self.right = None
+	self.left = None
 
 
 class routeObj:
@@ -29,7 +29,7 @@ class routeObj:
 
 
     def add_new_route(self,route):
-		# Vars
+	# Vars
         node = self.root
         binarystr = ""
         mask = route.split("/")[1]
@@ -48,13 +48,13 @@ class routeObj:
                     node.left = Node()
                     node.left.bit= "0"
                 node = node.left
-
       
 
     def find_longest_match(self,prefix):
         """
-        In Table: 11000000?.10101000.00001010.01
-        Lookup:   11000000?.10101000.00001010.10
+        In Table: 11000000.10101000.00001010.01
+        Lookup:   11000000.10101000.00001010.10
+	No Match
         """
 
         # Vars
@@ -84,17 +84,12 @@ class routeObj:
 
 
     def _convert_bin_ip(self,binstr):
-        ## Vars
-        #cnt = 0
-        #ip = ""
-        #ip += str(int(binstr[:8],2)) + "."
-        #try:
-
         ip = "{}.{}.{}.{}".format(str(int(binstr[:8],2)),
-								  str(int(binstr[8:16],2)),
-								  str(int(binstr[16:24],2)),
-								  str(int(binstr[24:32],2)))
+				  str(int(binstr[8:16],2)),
+				  str(int(binstr[16:24],2)),
+				  str(int(binstr[24:32],2)))
         return ip
+
 
 def main():
 	"""
@@ -118,12 +113,10 @@ def main():
 				break
 		# Save route table with new addition(s)
 		RW_mem(routeTable,"write")
-
 	elif args.check:       
 		ip_prefix = raw_input("Enter route to check: ")
 		message = routeTable.find_longest_match(ip_prefix)
 		print message
-
 	print "Exiting Route Table"
 
 
@@ -141,7 +134,6 @@ def RW_mem(obj,action):
 			obj =  pickle.load(outfile)
 			return obj
 		
-
 
 def get_user_choice(message):
 	"""
